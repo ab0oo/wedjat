@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.TimeZone;
 
 import net.ab0oo.aprs.avrs.models.ReferencePoint;
+import net.ab0oo.aprs.parser.CourseAndSpeedExtension;
 import net.ab0oo.aprs.parser.Position;
 import net.ab0oo.aprs.parser.PositionPacket;
 import net.ab0oo.aprs.parser.Utilities;
@@ -136,11 +137,27 @@ public class NotificationThread implements Runnable {
 		int minuteOfDay = calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE);
 		int today = calendar.get(Calendar.DAY_OF_WEEK) -1; //make days 0-based, Sunday=0, Saturday=6
 		for (Notification notification : notifications) {
-			// check time and day values here. for now, we're just going to page
-			boolean validDay = ((int)Math.pow(2,today) & notification.getValidDays()) == Math.pow(2, today);
+			// check time and day values here.
+			boolean validDay = ((int)Math.pow(2,today)  & notification.getValidDays()) == Math.pow(2, today);
 			if ( notification.getStartTime() <= minuteOfDay && 
 					notification.getEndTime() > minuteOfDay && validDay) {
 				NotificationAddress nAddress = wedjatService.getNotificationAddress(notification.getNotificationAddressId());
+				if ( !nAddress.isShortForm() ) {
+					alertString+= "\n\n";
+					alertString+= "Position for "+sourceCall+" reported at "+position.toString()+"\n";
+					if (positionPacket.getExtension() instanceof CourseAndSpeedExtension ) { 
+						CourseAndSpeedExtension cas = (CourseAndSpeedExtension)positionPacket.getExtension(); 
+						alertString += "movement vector is "+cas.getCourse()+" degrees at ";
+						if ( mSystem.equalsIgnoreCase("SAE") ) {
+							alertString +=Utilities.ktsToMph(cas.getSpeed()) +" mph\n";
+						} else {
+							alertString +=Utilities.kntsToKmh(cas.getSpeed()) +"km/h\n";
+						}
+					}
+					alertString += "Static map of location here:  ";
+					alertString += "https://maps.googleapis.com/maps/api/staticmap?center=" +position.getLatitude()+","+position.getLongitude()+
+							"&zoom=14&size=600x600&markers=color:blue%7Clabel:"+sourceCall+"%7C11211%7C11206%7C11222&sensor=false";
+				}
 				String toAddress = nAddress.getEmailAddress();
 				System.out.println(new Date()+": Sending " + alertString + " to " + toAddress);
 				SendMail sender = new SendMail(FROM_ADDRESS, toAddress,"APRS Alert", alertString);

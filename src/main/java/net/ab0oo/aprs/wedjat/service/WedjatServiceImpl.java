@@ -46,13 +46,13 @@ import net.ab0oo.aprs.wedjat.models.Zone;
  */
 public class WedjatServiceImpl implements WedjatService, Serializable {
 	private static final long serialVersionUID = 1L;
-	private MonitoredStationDAO monitoredStationDAO;
-	private NotificationAddressDAO notificationAddressDAO;
-	private NotificationDAO notificationDAO;
-	private RuleDAO ruleDAO;
-	private UserDAO userDAO;
-	private ZoneDAO zoneDAO;
-	private AlertHistoryDAO alertHistoryDAO;
+	protected MonitoredStationDAO monitoredStationDAO;
+	protected NotificationAddressDAO notificationAddressDAO;
+	protected NotificationDAO notificationDAO;
+	protected RuleDAO ruleDAO;
+	protected UserDAO userDAO;
+	protected ZoneDAO zoneDAO;
+	protected AlertHistoryDAO alertHistoryDAO;
 	
 	/* (non-Javadoc)
 	 * @see net.ab0oo.aprs.wedjat.service.WedjatService#getActiveRulesByStationId(java.lang.Long)

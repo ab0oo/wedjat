@@ -90,24 +90,25 @@ class WedjatClient implements PacketListener {
 
     @Override
     public void processPacket(APRSPacket packet ) {
-        int packets = 0, pPackets = 0;
+        int packets = 0, positionPackets = 0;
 		if (packet.isAprs() && packet.getAprsInformation() instanceof PositionPacket) {
 			PositionPacket pp = (PositionPacket) packet.getAprsInformation();
 			DataExtension de = pp.getExtension();
 			if (de != null) {
-				pPackets++;
+				positionPackets++;
 				processAlertRule(packet.getSourceCall(), pp);
 			}
 		}
 		if ( System.currentTimeMillis() > lastUpdate + UPDATE_INTERVAL ) {
 			lastUpdate = System.currentTimeMillis();
-			System.out.println(new Date()+": Total Packets:  "+packets+", Position Packets: "+pPackets+
+			System.out.println(new Date()+": Total Packets:  "+packets+", Position Packets: "+positionPackets+
 					" Tracked Stations:  "+lastPositions.size());
 		}
 
     }
     
     public void processAlertRule( String sourceCall, PositionPacket pp) {
+    	// this call can be more expensive than we want to pay.  need to cache it.
     	List<MonitoredStation> ms = wedjatService.getMonitoredStationsList(sourceCall.toUpperCase());
     	Position lastPosition = null;
     	// this statement ensures that we will NEVER alert on a single packet
