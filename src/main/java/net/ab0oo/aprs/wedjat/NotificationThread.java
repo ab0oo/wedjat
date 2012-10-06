@@ -103,7 +103,7 @@ public class NotificationThread implements Runnable {
 		PositionPacket positionPacket = info.getPosition();
 		Position position = positionPacket.getPosition();
 		MonitoredStation ms = wedjatService.getMonitoredStationByStationId(rule.getStationId());
-		String sourceCall = ms.getCallsign();
+		String sourceCall = ms.getNickname();
 		String alertString = sourceCall + " is moving";
 		User user = wedjatService.getUser(rule.getUserId());
 		TimeZone notificationTimeZone = user.getTimezone();
