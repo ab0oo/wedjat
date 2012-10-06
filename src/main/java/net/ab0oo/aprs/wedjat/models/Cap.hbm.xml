@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 28, 2012 10:28:58 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="net.ab0oo.aprs.wedjat.models.Cap" table="CAP">
+        <id name="Id" type="java.lang.Long">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="updateTime" type="java.util.Date">
+            <column name="UPDATETIME" />
+        </property>
+        <property name="expireTime" type="java.util.Date">
+            <column name="EXPIRETIME" />
+        </property>
+        <property name="event" type="java.lang.String">
+            <column name="EVENT" />
+        </property>
+        <set name="fipsAreas" table="CAPSFIPSCOUNTY" inverse="false" lazy="true">
+            <key>
+                <column name="CAPSID" />
+            </key>
+            <one-to-many class="net.ab0oo.aprs.wedjat.models.CapsFipsCounty" />
+        </set>
+        <property name="category" type="java.lang.String">
+            <column name="CATEGORY" />
+        </property>
+        <property name="eventId" type="java.lang.String">
+            <column name="EVENTID" />
+        </property>
+        <property name="severity" type="java.lang.String">
+            <column name="SEVERITY" />
+        </property>
+        <property name="urgency" type="java.lang.String">
+            <column name="URGENCY" />
+        </property>
+    </class>
+</hibernate-mapping>

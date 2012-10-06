@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.password">aprspass</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://www.gorkos.net:5432/aprs</property>
+        <property name="hibernate.connection.username">aprs</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="show_sql">true</property>
+        <property name="hbm2ddl.auto">create</property>
+        <mapping resource="net/ab0oo/aprs/wedjat/models/Cap.hbm.xml"/>
+        <mapping resource="net/ab0oo/aprs/wedjat/models/CapsFipsCounty.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>

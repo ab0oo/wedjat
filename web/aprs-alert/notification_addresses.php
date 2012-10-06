@@ -43,7 +43,13 @@ if ( !isset($_SESSION['userid'] ) ) {
         <div id="header"></div>
         <div id="menu"</div><?php include "menu.php"?></div>
         <div id="container">
-        <h2>Notification Addresses</h2><br>
+        <h2>Notification Addresses</h2>
+        <?php if ( !empty($_SESSION['error'] ) ) {
+            echo "<table border=\"1\"><TR><TD>";
+            print $_SESSION['error']."<br>";
+            echo "</TD></TR></TABLE>\n";
+            $_SESSION['error'] ="";
+        } ?> 
         <p>Here are the notification addresses you have set up.  You can add additional addresses, and remove or edit existing
         addresses using the icons in the list.  You may also send test messages to any notification address.</P>
         <a href="javascript:animatedcollapse.toggle('providers')">
@@ -51,24 +57,24 @@ if ( !isset($_SESSION['userid'] ) ) {
         <div id="providers" style="width: 700px; background: #E7FFCC; display:none">
         <TABLE align="center" width="600" border="1">
         <TR><TH>Provider</TH><TH>Phone Address</TH></TR>
-        <TR><TD><img src="images/virginsm.jpg"/></TD><TD>phone#@vmobl.com</TD></TR>
-        <TR><TD><img src="images/beyondsm.gif"/></TD><TD>phone#@txt.att.net</TD></TR>
-        <TR><TD><img src="images/at&tsm.jpg"/></TD><TD>phone#@txt.att.net</TD></TR>
-        <TR><TD><img src="images/verizon_sm.jpg"/></TD><TD>phone#@vtext.com</TD></TR>
-        <TR><TD><img src="images/centenial.png"/></TD><TD>phone#@cwemail.com</TD></TR>
-        <TR><TD><img src="images/cellularsouth.png"/></TD><TD>phone#@csouth1.com</TD></TR>
-        <TR><TD><img src="images/boost_sm.jpg"/></TD><TD>phone#@myboostmobile.com</TD></TR>
-        <TR><TD><img src="images/nextel_sm.gif"/></TD><TD>phone#@messaging.nextel.com</TD></TR>
-        <TR><TD><img src="images/sprint_sm.gif"/></TD><TD>phone#@messaging.sprintpcs.com</TD></TR>
-        <TR><TD><img src="images/tmobile_sm.gif"/></TD><TD>phone#@tmomail.net</TD></TR>
-        <TR><TD><img src="images/alltel_sm.gif"/></TD><TD>phone#@message.alltel.com</TD></TR>
-        <TR><TD><img src="images/qwest_sm.gif"/></TD><TD>phone#@qwestmp.com</TD></TR>
-        <TR><TD><img src="images/metropcs_sm.gif"/></TD><TD>phone#@mymetropcs.com</TD></TR>
-        <TR><TD><img src="images/cricket_sm.gif"/></TD><TD>phone#mms.mycricket.com</TD></TR>
-        <TR><TD><img src="images/bell_sm.gif"/></TD><TD>phone#@txt.bellmobility.ca</TD></TR>
-        <TR><TD><img src="images/telus_sm.gif"/></TD><TD>phone#@msg.telus.com</TD></TR>
-        <TR><TD><img src="images/rogers_sm.gif"/></TD><TD>hone#@pcs.rogers.com</TD></TR>
-        <TR><TD><img src="images/fido_sm.gif"/></TD><TD>phone#@fido.ca</TD></TR>
+        <TR><TD><img src="wimages/virginsm.jpg"/></TD><TD>phone#@vmobl.com</TD></TR>
+        <TR><TD><img src="wimages/beyondsm.gif"/></TD><TD>phone#@txt.att.net</TD></TR>
+        <TR><TD><img src="wimages/at&tsm.jpg"/></TD><TD>phone#@txt.att.net</TD></TR>
+        <TR><TD><img src="wimages/verizon_sm.jpg"/></TD><TD>phone#@vtext.com</TD></TR>
+        <TR><TD><img src="wimages/centenial.png"/></TD><TD>phone#@cwemail.com</TD></TR>
+        <TR><TD><img src="wimages/cellularsouth.png"/></TD><TD>phone#@csouth1.com</TD></TR>
+        <TR><TD><img src="wimages/boost_sm.jpg"/></TD><TD>phone#@myboostmobile.com</TD></TR>
+        <TR><TD><img src="wimages/nextel_sm.gif"/></TD><TD>phone#@messaging.nextel.com</TD></TR>
+        <TR><TD><img src="wimages/sprint_sm.gif"/></TD><TD>phone#@messaging.sprintpcs.com</TD></TR>
+        <TR><TD><img src="wimages/tmobile_sm.gif"/></TD><TD>phone#@tmomail.net</TD></TR>
+        <TR><TD><img src="wimages/alltel_sm.gif"/></TD><TD>phone#@message.alltel.com</TD></TR>
+        <TR><TD><img src="wimages/qwest_sm.gif"/></TD><TD>phone#@qwestmp.com</TD></TR>
+        <TR><TD><img src="wimages/metropcs_sm.gif"/></TD><TD>phone#@mymetropcs.com</TD></TR>
+        <TR><TD><img src="wimages/cricket_sm.gif"/></TD><TD>phone#mms.mycricket.com</TD></TR>
+        <TR><TD><img src="wimages/bell_sm.gif"/></TD><TD>phone#@txt.bellmobility.ca</TD></TR>
+        <TR><TD><img src="wimages/telus_sm.gif"/></TD><TD>phone#@msg.telus.com</TD></TR>
+        <TR><TD><img src="wimages/rogers_sm.gif"/></TD><TD>hone#@pcs.rogers.com</TD></TR>
+        <TR><TD><img src="wimages/fido_sm.gif"/></TD><TD>phone#@fido.ca</TD></TR>
         </TABLE><br>
         If you have others, please <a href="mailto: admin@aprs-alert.net">mail</a> them to us.<br>
         </div>

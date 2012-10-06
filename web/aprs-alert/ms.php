@@ -10,15 +10,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         //echo "Processing $id for changes<br>";
         $userid = pg_escape_string(stripslashes($_SESSION['userid']));
         $callsign = pg_escape_string(stripslashes($_POST['callsign'.$id]));
+        $nickname = pg_escape_string(stripslashes($_POST['nickname'.$id]));
+	if ( strlen($nickname) < 1 ) { $nickname = $callsign; }
         //$description = pg_escape_string(stripslashes($_POST['description'.$id]));
         $station_id = pg_escape_string(stripslashes($_POST['station_id'.$id]));
         if ( $value == '0' ) { // this is an insert of a new record
-            $sql = "INSERT INTO monitored_stations (user_id,callsign) VALUES (".$userid.",'".$callsign."')";
+            $sql = "INSERT INTO monitored_stations (user_id,callsign,nickname) VALUES (".$userid.",'".$callsign."','".$nickname."')";
             //echo $sql."<br>";
             $result = pg_query($dbconn,$sql);
             //echo "Result of execute is $result<br>";
         } else { // this is an update to an existing record
-            $sql = "UPDATE monitored_stations set callsign=upper('".$callsign."') where station_id=".$station_id;
+            $sql = "UPDATE monitored_stations set callsign=upper('".$callsign."'), nickname='".$nickname."' where station_id=".$station_id;
             //echo $sql."<br>";
             $result = pg_query($dbconn,$sql);
             //echo "Result of execute is $result<br>";
@@ -51,7 +53,9 @@ if ( $_SESSION['userid'] != NULL ) {
         $row = pg_fetch_array($result,$ri);
         echo "g_stations[g_stations.length] = {
             \"station_id\":\"".$row['station_id']."\",
-                \"callsign\":\"".$row['callsign']."\"};";
+                \"callsign\":\"".$row['callsign']."\",
+                \"nickname\":\"".$row['nickname']."\"};";
+                
     }
 }
 pg_close($dbconn);
@@ -75,6 +79,7 @@ function addcallsign(pndx, allowEdit) {
         p.callsign = "";
         p.station_id = 0;
         p.user_id = 0;
+        p.nickname = "";
     }
 
     var station_id = p.station_id;
@@ -117,29 +122,30 @@ function addcallsign(pndx, allowEdit) {
         cell.style.textAlign = "center";
     }
 
-//    cell = row.insertCell(1);
-//    if (allowEdit) {
-//        el = document.createElement("input");
-//        el.type = "text";
-//        el.name = "description" + nRow;
-//        el.id = "description" + nRow;
-//        el.size = 25;
-//        el.maxLength = 25;
-//        el.value = p.description;
-//        cell.appendChild(el);
-//    } else {
-//        cell.innerHTML = escapeHTML(p.description);
-//    }
-
-
     cell = row.insertCell(1);
+    if (allowEdit) {
+        el = document.createElement("input");
+        el.type = "text";
+        el.name = "nickname" + nRow;
+        el.id = el.name;
+        el.size = 25;
+        el.maxLength = 25;
+        el.value = p.nickname;
+        el.style.textAlign = "center";
+        cell.appendChild(el);
+    } else {
+        cell.innerHTML = escapeHTML(p.nickname);
+    }
+
+
+    cell = row.insertCell(2);
     cell.style.textAlign = "center";
 
     if (true) {
         cell.innerHTML =
-            "<A href='#' onclick=\"remove_onclick(" + nRow + ",'" + station_id + "',this);return false;\" title='Remove callsign from callsign list'><IMG border='0' src='images/remove.png'></A>" +
-            (isNew ? "":"&nbsp;<A href='#' onclick=\"edit_onclick(" + nRow + ",'" + station_id + "',this);return false;\" title='Edit this callsign'><IMG border='0' src='imags/edit.png'></A>") +
-            (isNew ? "":"&nbsp;<A href='#' onclick=\"undo_onclick(" + nRow + ",'" + station_id + "',this);return false;\" title='Undo changes or undelete this callsign'><IMG border='0' src='images/undo.png'></A>");
+            "<A href='#' onclick=\"remove_onclick(" + nRow + ",'" + station_id + "',this);return false;\" title='Remove callsign from callsign list'><IMG border='0' src='remove.png'></A>" +
+            (isNew ? "":"&nbsp;<A href='#' onclick=\"edit_onclick(" + nRow + ",'" + station_id + "',this);return false;\" title='Edit this callsign'><IMG border='0' src='edit.png'></A>") +
+            (isNew ? "":"&nbsp;<A href='#' onclick=\"undo_onclick(" + nRow + ",'" + station_id + "',this);return false;\" title='Undo changes or undelete this callsign'><IMG border='0' src='undo.png'></A>");
     }
 
     if (isNew) g_nRow++;

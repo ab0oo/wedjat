@@ -163,9 +163,11 @@ function addaddress(pndx, allowEdit) {
 
     if (true) {
         cell.innerHTML =
-            "<A href='#' onclick=\"remove_onclick(" + nRow + ",'" + na_id + "',this);return false;\" title='Remove address from address list'><IMG border='0' src='images/remove.png'></A>" +
-            (isNew ? "":"&nbsp;<A href='#' onclick=\"edit_onclick(" + nRow + ",'" + na_id + "',this);return false;\" title='Edit this address'><IMG border='0' src='images/edit.png'></A>") +
-            (isNew ? "":"&nbsp;<A href='#' onclick=\"undo_onclick(" + nRow + ",'" + na_id + "',this);return false;\" title='Undo changes or undelete this address'><IMG border='0' src='images/undo.png'></A>");
+            "<A href='#' onclick=\"remove_onclick(" + nRow + ",'" + na_id + "',this);return false;\" title='Remove address from address list'><IMG border='0' src='remove.png'></A>" +
+            (isNew ? "":"&nbsp;<A href='#' onclick=\"edit_onclick(" + nRow + ",'" + na_id + "',this);return false;\" title='Edit this address'><IMG border='0' src='edit.png'></A>") +
+            (isNew ? "":"&nbsp;<A href='#' onclick=\"undo_onclick(" + nRow + ",'" + na_id + "',this);return false;\" title='Undo changes or undelete this address'><IMG border='0' src='undo.png'></A>") +
+            (isNew ? "":"&nbsp;<A href='mailtest.php?addr="+na_id +"' title='Test email address'><IMG border='0' src='wimages/mailtest.png'></A>" );
+
     }
 
     if (isNew) g_nRow++;
@@ -197,16 +199,6 @@ function save_onclick() {
     document.getElementById("last").value = g_nRow;
     document.getElementById("delete").value = g_delete;
     document.getElementById("frmSave").submit();
-}
-
-function import_onclick() {
-    document.getElementById("divImport").style.display = "block";
-    document.getElementById("txtBatch").focus();
-}
-
-function cancelbatch_onclick() {
-    document.getElementById("txtBatch").value = "";
-    document.getElementById("divImport").style.display = "none";
 }
 
 function edit_onclick(nRow, tpna_id, objHref) {

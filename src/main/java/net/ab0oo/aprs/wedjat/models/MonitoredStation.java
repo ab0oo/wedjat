@@ -30,6 +30,7 @@ public class MonitoredStation implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Long stationId = -1L;
 	private String callsign;
+	private String nickname;
 	private Long userId;
 	/**
 	 * @return the stationId
@@ -55,7 +56,13 @@ public class MonitoredStation implements Serializable {
 	public void setCallsign(String callsign) {
 		this.callsign = callsign;
 	}
-	/**
+	public String getNickname() {
+        return nickname;
+    }
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+    /**
 	 * @return the userId
 	 */
 	public Long getUserId() {

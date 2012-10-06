@@ -7,27 +7,21 @@ if ( isset($_POST['mypassword1']) ) {
     $mypassword2 = $_POST['mypassword2'];
     $myusername1 = $_SESSION['username1'];
     if ( strlen($mypassword1) < 3 ) {
-        session_register("username1");
         $_SESSION['username1'] = $myusername;
-        session_register("error");
         $_SESSION['error'] .= "The password needs to be longer than 3 characters.  Really.";
         header("location:forgot_password.php?ID=$id");
         exit;
     }
 
     if ( $mypassword1 != $mypassword2 ) {
-        session_register("username1");
         $_SESSION['username1'] = $myusername1;
-        session_register("error");
         $_SESSION['error'] .= "The passwords need to match";
         header("location:forgot_password.php?ID=$id");
         exit;
     }
     
     if ( strlen($mypassword1) < 3 ) {
-        session_register("username1");
         $_SESSION['username1'] = $myusername1;
-        session_register("error");
         $_SESSION['error'] .= "The password needs to be longer than 3 characters.  Really.";
         header("location:forgot_password.php?ID=$id");
         exit;
@@ -39,7 +33,6 @@ if ( isset($_POST['mypassword1']) ) {
     $sql = "UPDATE users set password = md5('".$mypassword1."') where username=upper('".$myusername1."')";
     $result=pg_exec($sql);
     pg_close($dbconn);
-    session_unregister("error");
     header("location:login.php");
     exit;
 }
@@ -67,6 +60,7 @@ if ( isset($_POST['mypassword1']) ) {
         <div id="container">
     <?php
     if ( isset($_POST['forgotten_username']) ) { 
+        $fusername = $_POST['forgotten_username'];
         $conn_string = "host=$host port=5432 dbname=$db_name user=$db_user password=$db_pass options='--client_encoding=UTF8'";
         $dbconn = pg_connect($conn_string) or die( "Unable to connect to database");
         $sql = "SELECT email from users where username = upper('".$_POST['forgotten_username']."')";
@@ -85,6 +79,8 @@ if ( isset($_POST['mypassword1']) ) {
             $headers = "From: alert@aprs-alert.net\r\n" .
                 "X-Mailer: php";
             if (mail($email_address, $subject, $body, $headers)) {
+                $sql="DELETE FROM forgotten_password where username='$fusername'";
+                $result=pg_exec($sql);
                 $sql="INSERT INTO forgotten_password (hash, username ) values ( ".
                 "'".$hash."', upper('".$_POST['forgotten_username']."'))";
                 $result=pg_exec($sql);
@@ -106,7 +102,6 @@ if ( isset($_POST['mypassword1']) ) {
         $count=pg_numrows($result);
         if ( $count == 1 ) {
             $row = pg_fetch_assoc($result, 0);
-            session_register("username1");
             $_SESSION['username1'] = $row['username'];
             echo "<h2>Welcome back, ".$row['username']."!</h2>";
             if ( isset($_GET['ERR']) ) {

@@ -4,6 +4,17 @@
   <artifactId>wedjat</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <description>Wedjat source code and web code, part of the APRS-Alert.net project</description>
+  <repositories>
+    <repository>
+      <id>central</id>
+      <name>Maven Repository Switchboard</name>
+      <layout>default</layout>
+      <url>http://repo1.maven.org/maven2</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
 
  <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -12,7 +23,7 @@
   <build>
     <directory>target</directory>
     <outputDirectory>target/classes</outputDirectory>
-    <finalName>${artifactId}-${version}</finalName>
+    <finalName>${project.artifactId}-${project.version}</finalName>
     <testOutputDirectory>target/test-classes</testOutputDirectory>
     <sourceDirectory>src/main/java</sourceDirectory>
     <scriptSourceDirectory>src/main/scripts</scriptSourceDirectory>
@@ -68,6 +79,27 @@
   		<artifactId>javax.mail</artifactId>
   		<version>1.4.5</version>
   	</dependency>
-  	
+
+  	  	<dependency>
+  	  		<groupId>org.hibernate.java-persistence</groupId>
+  	  		<artifactId>jpa-api</artifactId>
+  	  		<version>2.0.Beta-20090815</version>
+  	  	</dependency>
+  	  	<dependency>
+  	  		<groupId>javax.persistence</groupId>
+  	  		<artifactId>persistence-api</artifactId>
+  	  		<version>1.0.2</version>
+  	  	</dependency>
+  	  	<dependency>
+  	  		<groupId>org.hibernate</groupId>
+  	  		<artifactId>hibernate</artifactId>
+  	  		<version>3.6.0.Beta2</version>
+  	  		<type>pom</type>
+  	  	</dependency>
+  	  	<dependency>
+  	  		<groupId>org.hibernate</groupId>
+  	  		<artifactId>hibernate-core</artifactId>
+  	  		<version>4.1.5.SP1</version>
+  	  	</dependency>
   </dependencies>
 </project>

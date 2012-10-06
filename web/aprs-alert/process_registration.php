@@ -75,7 +75,7 @@ $subject = "APRS-Alert Registration!";
 $body = "Hi,\n\nWe have received your account request for APRS-Alert.net, and need to verify your email\n";
 $body .="address to finalize your account.  Please either click on the following link, or copy-paste it\n";
 $body .="into a browser window to complete your registration.\n";
-$body .="http://www.aprs-alert.net/finalize?id=$hash\n\n";
+$body .="http://www.aprs-alert.net/finalize.php?id=$hash\n\n";
 $body .=" Thanks for giving APRS-Alert a try!\n";
 $body .=" de John, AB0OO\n";
 $headers = "From: alert@aprs-alert.net\r\n" .

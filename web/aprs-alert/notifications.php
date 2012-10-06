@@ -45,7 +45,7 @@ if ( !isset($_SESSION['userid'] ) ) {
         <div id="container">
             <h2>Notifications</h2>
             <a href="javascript:animatedcollapse.toggle('instructions')">
-            <img title='Generated button' src='images/instructions_f.png' onmouseover='javascript:this.src="images/instructions_b.png"' onmouseout='javascript:this.src="images/instructions_f.png"' /></a>
+            <img title='Generated button' src='instructions_f.png' onmouseover='javascript:this.src="instructions_b.png"' onmouseout='javascript:this.src="instructions_f.png"' /></a>
             <div id="instructions" style="width: 700px; background: #E7FFCC; display:none">
             <p>There are currently two types of notification:  short and long.  Short messages are
             intended for small-screen devices like mobile phones or pagers.  A typical short
@@ -63,7 +63,7 @@ if ( !isset($_SESSION['userid'] ) ) {
         $result=pg_exec($sql);
         $count=pg_numrows($result);
         if ( $count > 1 ) { ?>
-        <INPUT align='center' type='image' title='Add new address to notification list' onclick='addnewrule_onclick()' src='images/addentry_f.png' onmouseover='javascript:this.src="images/addentry_b.png"' onmouseout='javascript:this.src="images/addentry_f.png"'>
+        <INPUT align='center' type='image' title='Add new address to notification list' onclick='addnewrule_onclick()' src='addentry_f.png' onmouseover='javascript:this.src="addentry_b.png"' onmouseout='javascript:this.src="addentry_f.png"'>
         <FORM id='frmSave' name='frmSave' method='post' style='margin: 0px; padding: 0px;'> 
         <table align='center' width='740' class='datatable' style='border:solid 1px black' id='tblNotifications'>
             <TR><TH>Rule</TH><TH>Start<br>Time</TH><TH>End<br>Time</TH><TH>Valid Days</TH><TH>Notification Address</TH><TH>&nbsp;</TH></TR>

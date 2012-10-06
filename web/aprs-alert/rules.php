@@ -45,7 +45,7 @@ if ( !isset($_SESSION['userid'] ) ) {
         <div id="container">
         <h2>Rules</h2>
         <a href="javascript:animatedcollapse.toggle('instructions')">
-        <img title='Generated button' src='images/instructions_f.png' onmouseover='javascript:this.src="images/instructions_b.png"' onmouseout='javascript:this.src="images/instructions_f.png"' /></a>
+        <img title='Generated button' src='instructions_f.png' onmouseover='javascript:this.src="instructions_b.png"' onmouseout='javascript:this.src="instructions_f.png"' /></a>
         <div id="instructions" style="width: 700px; background: #E7FFCC; display:none">
         <p>Rules are used to link specific callsigns to specific zone or movement triggers.  There are three types of movement types:
         <ul><li>MOVEMENT<li>INCURSION<li>EXCURSION</UL>
@@ -73,8 +73,8 @@ if ( !isset($_SESSION['userid'] ) ) {
         $sql="SELECT * FROM monitored_stations WHERE user_id=".$_SESSION['userid'];
         $result=pg_exec($sql);
         $count=pg_numrows($result);
-        if ( $count > 1 ) { ?>
-        <INPUT align='center' type='image' title='Add new monitoring rule' onclick='addnewrule_onclick()' src='images/addentry_f.png' onmouseover='javascript:this.src="images/addentry_b.png"' onmouseout='javascript:this.src="images/addentry_f.png"'>
+        if ( $count >= 1 ) { ?>
+        <INPUT align='center' type='image' title='Add new monitoring rule' onclick='addnewrule_onclick()' src='addentry_f.png' onmouseover='javascript:this.src="addentry_b.png"' onmouseout='javascript:this.src="addentry_f.png"'>
         <FORM id='frmSave' name='frmSave' method='post' style='margin: 0px; padding: 0px;'> 
         <table align='center' width='600' class='datatable' style='border:solid 1px black' id='tblRules'>
             <TR><TH>Monitored<br>Station</TH><TH>Rule Type</TH><TH>Cycle Time<br>(in minutes)</TH><TH>Zone</TH><TH>&nbsp;</TH></TR>

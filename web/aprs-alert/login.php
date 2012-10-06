@@ -36,9 +36,8 @@
                         <input type="text" name="username" value="<?php 
                             if (isset($_SESSION['user_name'] )) {
                                 echo $_SESSION['user_name'];
-                                session_unregister("user_name");
                             } elseif (isset($_POST['username'])) { echo $username; } 
-                            ?>" /><br>
+                            ?>"/><br>
                         Password:  
                         <input type="password" name="password" /><br>
                         <input type="submit" name="submit" value="Log In" />

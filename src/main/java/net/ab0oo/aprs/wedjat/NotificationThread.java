@@ -155,8 +155,8 @@ public class NotificationThread implements Runnable {
 						}
 					}
 					alertString += "Static map of location here:  ";
-					alertString += "https://maps.googleapis.com/maps/api/staticmap?center=" +position.getLatitude()+","+position.getLongitude()+
-							"&zoom=14&size=600x600&markers=color:blue%7Clabel:"+sourceCall+"%7C11211%7C11206%7C11222&sensor=false";
+					alertString += "https://maps.googleapis.com/maps/api/staticmap?&zoom=14&size=600x600&markers=color:blue%7Clabel:"
+							+sourceCall+"%7C" +position.getLatitude()+","+position.getLongitude()+"&sensor=false";
 				}
 				String toAddress = nAddress.getEmailAddress();
 				System.out.println(new Date()+": Sending " + alertString + " to " + toAddress);

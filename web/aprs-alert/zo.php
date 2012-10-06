@@ -195,9 +195,9 @@ function addzone(pndx, allowEdit) {
 
     if (true) {
         cell.innerHTML =
-            "<A href='#' onclick=\"remove_onclick(" + nRow + ",'" + zone_id + "',this);return false;\" title='Remove zone from zone list'><IMG border='0' src='images/remove.png'></A>" +
-            (isNew ? "":"&nbsp;<A href='#' onclick=\"edit_onclick(" + nRow + ",'" + zone_id + "',this);return false;\" title='Edit this zone'><IMG border='0' src='images/edit.png'></A>") +
-            (isNew ? "":"&nbsp;<A href='#' onclick=\"undo_onclick(" + nRow + ",'" + zone_id + "',this);return false;\" title='Undo changes or undelete this zone'><IMG border='0' src='images/undo.png'></A>");
+            "<A href='#' onclick=\"remove_onclick(" + nRow + ",'" + zone_id + "',this);return false;\" title='Remove zone from zone list'><IMG border='0' src='remove.png'></A>" +
+            (isNew ? "":"&nbsp;<A href='#' onclick=\"edit_onclick(" + nRow + ",'" + zone_id + "',this);return false;\" title='Edit this zone'><IMG border='0' src='edit.png'></A>") +
+            (isNew ? "":"&nbsp;<A href='#' onclick=\"undo_onclick(" + nRow + ",'" + zone_id + "',this);return false;\" title='Undo changes or undelete this zone'><IMG border='0' src='undo.png'></A>");
     }
 
     if (isNew) g_nRow++;

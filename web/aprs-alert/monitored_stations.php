@@ -25,10 +25,16 @@
         <h2>Monitored Stations</h2>
         <p>Here are the stations you can monitor for activity or movement.  Identifying the callsign of stations you are interested
         in is the first step in using APRS-Alert.  Note that case does not matter, but SSID does.  No wildcards are allowed.</p>
-        <INPUT align='center' type='image' title='Add new address to notification list' onclick='addnewcallsign_onclick()' src='images/addentry_f.png' onmouseover='javascript:this.src="images/addentry_b.png"' onmouseout='javascript:this.src="images/addentry_f.png"'>
+        <INPUT align='center' type='image' title='Add new address to notification list' onclick='addnewcallsign_onclick()' 
+          src='images/addentry_f.png' onmouseover='javascript:this.src="images/addentry_b.png"' 
+          onmouseout='javascript:this.src="images/addentry_f.png"'>
         <FORM id='frmSave' name='frmSave' method='post' style='margin: 0px; padding: 0px;'> 
         <table align='center' width='600' class='datatable' style='border:solid 1px black' id='tblStations'>
-            <TR><TH>Callsign</TH><TH>&nbsp;</TH></TR>
+            <TR>
+            	<TH align="center">Callsign</TH>
+            	<TH align="center">Nickname</TH>
+            	<TH>&nbsp;</TH>
+            </TR>
         </table>
         <INPUT type='hidden' name='save' id='save' value='1'> 
         <INPUT type='hidden' name='last' id='last' value='0'> 

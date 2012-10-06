@@ -1,10 +1,14 @@
-<?php session_start(); ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<?php session_start();
+if ( !isset($_SESSION['userid'] ) ) {
+    header("location:login.php");
+}
+?>
 <?php
-if ( empty($_SESSION['username']) || !(isset($_SESSION['username']) )) {
+if ( !(isset($_SESSION['username']) || empty($_SESSION['username']) )) {
     header("location:index.php");
 }
 ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
     <head>
         <title></title>

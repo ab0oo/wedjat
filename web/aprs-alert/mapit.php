@@ -154,17 +154,17 @@ if ( !isset($_SESSION['userid'] ) ) {
             </td>
             <td>
                 <table width="300" style="width: 300px" align="center">
-                    <tr><td><input type="image" src="images/plus5000.png" onClick="changeRadius(5000)"/></td></tr>
-                    <tr><td><input type="image" src="images/plus1000.png" onClick="changeRadius(1000)"/></td></tr>
-                    <tr><td><input type="image" src="images/plus500.png" onClick="changeRadius(500)"/></td></tr>
-                    <tr><td><input type="image" src="images/plus100.png" onClick="changeRadius(100)"/></td></tr>
-                    <tr><td><input type="image" src="images/plus50.png" onClick="changeRadius(50)"/></td></tr>
+                    <tr><td><input type="image" src="wimages/plus5000.png" onClick="changeRadius(5000)"/></td></tr>
+                    <tr><td><input type="image" src="wimages/plus1000.png" onClick="changeRadius(1000)"/></td></tr>
+                    <tr><td><input type="image" src="wimages/plus500.png" onClick="changeRadius(500)"/></td></tr>
+                    <tr><td><input type="image" src="wimages/plus100.png" onClick="changeRadius(100)"/></td></tr>
+                    <tr><td><input type="image" src="wimages/plus50.png" onClick="changeRadius(50)"/></td></tr>
                     <tr><td><input type="text" id="dynradius" value="2000" size="6" onChange="drawCircle()"><br>meter radius</tr></td>
-                    <tr><td><input type="image" src="images/minus50.png" onClick="changeRadius(-50)"/></td></tr>
-                    <tr><td><input type="image" src="images/minus100.png" onClick="changeRadius(-100)"/></td></tr>
-                    <tr><td><input type="image" src="images/minus500.png" onClick="changeRadius(-500)"/></td></tr>
-                    <tr><td><input type="image" src="images/minus1000.png" onClick="changeRadius(-1000)"/></td></tr>
-                    <tr><td><input type="image" src="images/minus5000.png" onClick="changeRadius(-5000)"/></td></tr>
+                    <tr><td><input type="image" src="wimages/minus50.png" onClick="changeRadius(-50)"/></td></tr>
+                    <tr><td><input type="image" src="wimages/minus100.png" onClick="changeRadius(-100)"/></td></tr>
+                    <tr><td><input type="image" src="wimages/minus500.png" onClick="changeRadius(-500)"/></td></tr>
+                    <tr><td><input type="image" src="wimages/minus1000.png" onClick="changeRadius(-1000)"/></td></tr>
+                    <tr><td><input type="image" src="wimages/minus5000.png" onClick="changeRadius(-5000)"/></td></tr>
                 </table>
             </td>
         </tr>

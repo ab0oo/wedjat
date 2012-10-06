@@ -56,6 +56,7 @@ public class JdbcMonitoredStationDAO extends BaseJdbcDAO implements MonitoredSta
                 retval.setCallsign(rs.getString("callsign"));
                 retval.setUserId(rs.getLong("user_id"));
                 retval.setStationId(rs.getLong("station_id"));
+                retval.setNickname( rs.getString("nickname"));
             }
         } catch ( SQLException sqlex ) {
         	System.err.println("SQL Exception:  "+sqlex);
@@ -97,6 +98,7 @@ public class JdbcMonitoredStationDAO extends BaseJdbcDAO implements MonitoredSta
                 retval.setCallsign(rs.getString("callsign"));
                 retval.setUserId(rs.getLong("user_id"));
                 retval.setStationId(rs.getLong("station_id"));
+                retval.setNickname(rs.getString("nickname"));
                 infos.add(retval);
             }
         } catch ( SQLException sqlex ) {
@@ -130,6 +132,7 @@ public class JdbcMonitoredStationDAO extends BaseJdbcDAO implements MonitoredSta
                 retval.setCallsign(rs.getString("callsign"));
                 retval.setUserId(rs.getLong("user_id"));
                 retval.setStationId(rs.getLong("station_id"));
+                retval.setNickname(rs.getString("nickname")); 
                 infos.add(retval);
             }
         } catch ( SQLException sqlex ) {
@@ -162,6 +165,7 @@ public class JdbcMonitoredStationDAO extends BaseJdbcDAO implements MonitoredSta
                 retval.setCallsign(rs.getString("callsign"));
                 retval.setUserId(rs.getLong("user_id"));
                 retval.setStationId(rs.getLong("station_id"));
+                retval.setNickname(rs.getString("nickname"));
                 infos.add(retval);
             }
         } catch ( SQLException sqlex ) {

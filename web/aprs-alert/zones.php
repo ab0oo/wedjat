@@ -45,7 +45,7 @@ if ( !isset($_SESSION['userid'] ) ) {
         <div id="container">
         <h2>Monitored Zones</h2>
         <a href="javascript:animatedcollapse.toggle('instructions')">
-        <img title='Generated button' src='images/instructions_f.png' onmouseover='javascript:this.src="images/instructions_b.png"' onmouseout='javascript:this.src="images/instructions_f.png"' /></a>
+        <img title='Generated button' src='instructions_f.png' onmouseover='javascript:this.src="instructions_b.png"' onmouseout='javascript:this.src="instructions_f.png"' /></a>
         <div id="instructions" style="width: 700px; background: #E7FFCC; display:none">
         <p>Monitored Zones are the heart of APRS-Alert's flexibility.  A zone can be as simple as a circular area defined as a center
         and radius, to complex multi-point polygons.  Right now, the APRS-Alert logic supports complex polygons, including polys
@@ -66,9 +66,9 @@ if ( !isset($_SESSION['userid'] ) ) {
         <hr>
         <p>Note, the format for latitude and longitude is "DDD.DDDDD" with South and West negative.  For example, the N4NE-1 Digipeater in Cumming, GA is at 34.2363, -84.160346.</p>
         <p>This page will also accept "DD MM.MMMMM" as a format, so standard APRS formatted positions will work.  Just use a space in place of the ° symbol.  For example, N4NE-1 is at "34 7.53" "84 8.21".</p>
-        <INPUT align='center' type='image' title='Add new zone to zone list' onclick='addnewzone_onclick()' src='images/addentry_f.png' onmouseover='javascript:this.src="images/addentry_b.png"' onmouseout='javascript:this.src="images/addentry_f.png"'>
+        <INPUT align='center' type='image' title='Add new zone to zone list' onclick='addnewzone_onclick()' src='addentry_f.png' onmouseover='javascript:this.src="addentry_b.png"' onmouseout='javascript:this.src="addentry_f.png"'>
         <a href="mapit.php">
-        <img align='center' title='Map-IF Button' src='images/map_if_f.png' onmouseover='javascript:this.src="images/map_if_b.png"' onmouseout='javascript:this.src="images/map_if_f.png"' /></a>
+        <img align='center' title='Map-IF Button' src='wimages/map_if_f.png' onmouseover='javascript:this.src="wimages/map_if_b.png"' onmouseout='javascript:this.src="wimages/map_if_f.png"' /></a>
         <FORM id='frmSave' name='frmSave' method='post' style='margin: 0px; padding: 0px;'> 
         <table align='center' width='600' class='datatable' style='border:solid 1px black' id='tblZones'>
             <TR><TH>Description</TH><TH>Center<br>Latitude</TH><TH>Center<br>Longitude</TH><TH>Radius</TH><TH>&nbsp;</TH></TR>

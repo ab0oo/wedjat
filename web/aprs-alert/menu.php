@@ -27,6 +27,7 @@ if (empty($_SESSION['count'])) {
         print "<a href=\"logout.php\">Log out</a>";
     }
 ?>
+</td>
 </tr>
 </table>
 

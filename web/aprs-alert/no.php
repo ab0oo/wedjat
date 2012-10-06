@@ -313,9 +313,9 @@ function addrule(pndx, allowEdit) {
 
     if (true) {
         cell.innerHTML =
-            "<A href='#' onclick=\"remove_onclick(" + nRow + ",'" + n_id + "',this);return false;\" title='Remove rule from rule list'><IMG border='0' src='images/remove.png'></A>" +
-            (isNew ? "":"&nbsp;<A href='#' onclick=\"edit_onclick(" + nRow + ",'" + n_id + "',this);return false;\" title='Edit this rule'><IMG border='0' src='images/edit.png'></A>") +
-            (isNew ? "":"&nbsp;<A href='#' onclick=\"undo_onclick(" + nRow + ",'" + n_id + "',this);return false;\" title='Undo changes or undelete this rule'><IMG border='0' src='images/undo.png'></A>");
+            "<A href='#' onclick=\"remove_onclick(" + nRow + ",'" + n_id + "',this);return false;\" title='Remove rule from rule list'><IMG border='0' src='remove.png'></A>" +
+            (isNew ? "":"&nbsp;<A href='#' onclick=\"edit_onclick(" + nRow + ",'" + n_id + "',this);return false;\" title='Edit this rule'><IMG border='0' src='edit.png'></A>") +
+            (isNew ? "":"&nbsp;<A href='#' onclick=\"undo_onclick(" + nRow + ",'" + n_id + "',this);return false;\" title='Undo changes or undelete this rule'><IMG border='0' src='undo.png'></A>");
     }
 
     if (isNew) g_nRow++;
