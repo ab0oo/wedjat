@@ -20,6 +20,7 @@
  */
 package net.ab0oo.aprs.wedjat;
 
+import java.net.URI;
 import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -155,8 +156,9 @@ public class NotificationThread implements Runnable {
 						}
 					}
 					alertString += "Static map of location here:  ";
-					alertString += "https://maps.googleapis.com/maps/api/staticmap?&zoom=14&size=600x600&markers=color:blue%7Clabel:"
-							+sourceCall+"%7C" +position.getLatitude()+","+position.getLongitude()+"&sensor=false";
+					URI alertUrl = URI.create("https://maps.googleapis.com/maps/api/staticmap?&zoom=14&size=600x600&markers=color:blue%7Clabel:"
+							+sourceCall+"%7C" +position.getLatitude()+","+position.getLongitude()+"&sensor=false");
+					alertString += alertUrl.toString();
 				}
 				String toAddress = nAddress.getEmailAddress();
 				System.out.println(new Date()+": Sending " + alertString + " to " + toAddress);
