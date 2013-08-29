@@ -18,8 +18,10 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
  * USA
  */
-package net.ab0oo.aprs.wedjat;
 
+
+package net.ab0oo.aprs.wedjat;
+/*
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -45,17 +47,18 @@ import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.io.SyndFeedInput;
 import com.sun.syndication.io.XmlReader;
 
-
+*/
 /**
  * @author johng
  *
  */
 public class CapClient {
+/*
     private static boolean noFetch = false;
     private static org.hibernate.SessionFactory sessionFactory;
     private static long capId = 0;
     private static long capFipsId = 0;
-    
+  
     public static void main(String[] args) {
         try {
         	setUp();
@@ -145,7 +148,8 @@ public class CapClient {
             ex.printStackTrace();
         }
     }
-
+*/
+/*
     protected static void setUp() throws Exception {
         // A SessionFactory is set up once for an application
         sessionFactory = new Configuration()
@@ -175,5 +179,5 @@ public class CapClient {
         
     }
 
-
+*/
 }

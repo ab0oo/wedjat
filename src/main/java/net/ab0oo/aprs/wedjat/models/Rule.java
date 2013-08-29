@@ -28,9 +28,10 @@ import java.util.Date;
  *
  */
 public class Rule implements Serializable {
+    public enum RuleType {INCURSION, EXCURSION, MOVEMENT, UNKNOWN};
 	private static final long serialVersionUID = 1L;
 	private Long ruleId = -1L, userId, stationId, zoneId;
-	private String ruleType;
+	private RuleType ruleType;
 	private Long cycleTime;
 	private Date nextEnabled;
 	
@@ -61,14 +62,30 @@ public class Rule implements Serializable {
 	/**
 	 * @return the ruleType
 	 */
-	public String getRuleType() {
+	public RuleType getRuleType() {
 		return ruleType;
 	}
 	/**
 	 * @param ruleType the ruleType to set
 	 */
-	public void setRuleType(String ruleType) {
+	public void setRuleType(RuleType ruleType) {
 		this.ruleType = ruleType;
+	}
+	
+	/**
+	 * @param ruleType
+	 */
+	public void setRuleType(String ruleType) {
+	    if ( ruleType.equalsIgnoreCase("INCURSION") ) {
+	        this.ruleType = RuleType.INCURSION;
+	    } else if ( ruleType.equalsIgnoreCase("EXCURSION")) {
+	        this.ruleType = RuleType.EXCURSION;
+	    } else if ( ruleType.equalsIgnoreCase("MOVEMENT")) {
+	        this.ruleType = RuleType.MOVEMENT;
+	    } else {
+	        this.ruleType = RuleType.UNKNOWN;
+	    }
+	        
 	}
 	/**
 	 * @return the cycleTime
