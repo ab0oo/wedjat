@@ -23,7 +23,6 @@ package net.ab0oo.aprs.wedjat;
 import java.net.URI;
 import java.text.DecimalFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.TimeZone;
@@ -61,7 +60,7 @@ public class NotificationThread implements Runnable {
     private WedjatService          wedjatService;
 
     public NotificationThread() {
-        System.out.println("Notification thread starting");
+        log.info("Notification thread starting");
     }
 
     /*
@@ -92,12 +91,11 @@ public class NotificationThread implements Runnable {
                     if (oneInfo != null) {
                         notify(oneInfo);
                     } else {
-                        System.err.println(new Date() + ":  Managed to fall out of the wait() without an object");
+                        log.warn("Managed to fall out of the NotificationThread wait() without an object");
                     }
                 }
             } catch (Throwable t) {
-                System.err.println("HURL!  " + t);
-                t.printStackTrace();
+                log.fatal("HURL!  ", t);
             }
         }
     }
@@ -132,7 +130,7 @@ public class NotificationThread implements Runnable {
             alertString += ". " + distFmt.format(distance) + distanceUnit
                     + Utilities.degressToCardinal(rp1.getBearingTo()) + " of " + rp1.getCity() + ", " + rp1.getRegion();
         } else {
-            System.err.println("Got an unknown rule type " + rule.getRuleType() + " for " + ms.getCallsign());
+            log.warn("Got an unknown rule type " + rule.getRuleType() + " for " + ms.getCallsign());
         }
 
         List<Notification> notifications = wedjatService.getNotificationsByRuleId(rule.getRuleId());
@@ -175,18 +173,17 @@ public class NotificationThread implements Runnable {
                             + "\">APRS.fi</a>";
                 }
                 String toAddress = nAddress.getEmailAddress();
-                System.out.println(new Date() + ": Sending " + alertString + " to " + toAddress);
+                log.info("Sending " + alertString + " to " + toAddress);
                 SendMail sender = new SendMail(FROM_ADDRESS, toAddress, subject, alertString);
                 sender.send();
                 AlertHistory ah = new AlertHistory(rule.getUserId(), alertString);
                 wedjatService.saveAlertHistory(ah);
                 count++;
             } else {
-                System.out.println(new Date() + ": Notification for rule " + rule.getRuleId()
-                        + " outside notification window");
+                log.info("Notification for rule " + rule.getRuleId() + " outside notification window");
             }
         }
-        System.out.println(new Date() + ": Sent " + count + " notifications for rule " + rule.getRuleId());
+        log.info("Sent " + count + " notifications for rule " + rule.getRuleId());
     }
 
     /**
