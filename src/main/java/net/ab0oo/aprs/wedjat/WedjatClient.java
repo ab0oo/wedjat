@@ -103,6 +103,7 @@ class WedjatClient implements PacketListener {
 
     @Override
     public void processPacket(APRSPacket packet) {
+        packets++;
         if (packet.isAprs() && packet.getAprsInformation() instanceof PositionPacket) {
             PositionPacket pp = (PositionPacket) packet.getAprsInformation();
             DataExtension de = pp.getExtension();
@@ -115,6 +116,8 @@ class WedjatClient implements PacketListener {
             lastUpdate = System.currentTimeMillis();
             System.out.println(new Date() + ": Total Packets:  " + packets + ", Position Packets: " + positionPackets
                     + " Tracked Stations:  " + lastPositions.size());
+            log.info("Total Packets: " + packets + ", Position Packets: " + positionPackets
+                + " Tracked Stations: " + lastPositions.size());
         }
 
     }
