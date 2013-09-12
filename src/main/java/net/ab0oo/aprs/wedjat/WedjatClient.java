@@ -49,7 +49,7 @@ import org.apache.logging.log4j.Logger;
 
 class WedjatClient implements PacketListener {
 
-    protected static final Logger     log              = LogManager.getLogger("wedjat");
+    protected static final Logger     log              = LogManager.getLogger(WedjatClient.class.getName());
     static DecimalFormat              df               = new DecimalFormat("###.000000");
     static final String               FROM_ADDRESS     = "wedjat@www.aprs-alert.net";
     static final long                 UPDATE_INTERVAL  = 60 * 1 * 1000;                                     // 1
@@ -58,8 +58,8 @@ class WedjatClient implements PacketListener {
     private static NotificationThread nt               = new NotificationThread();
     // private static int packets = 0;
     private static long               lastUpdate       = 0;
-    private static int                packets          = 0;
-    private static int                positionPackets  = 0;
+    private int                       packets          = 0;
+    private int                       positionPackets  = 0;
     private WedjatService             wedjatService;
     private Map<String, LastPosition> lastPositions    = new HashMap<String, LastPosition>();
     private List<NotificationInfo>    notificationList = new ArrayList<NotificationInfo>();
@@ -94,9 +94,11 @@ class WedjatClient implements PacketListener {
         Thread notificationThread = new Thread(nt);
         notificationThread.start();
         log.info("Wedjat Client initialized, sending startup mail");
+	System.out.println("Sending startup mail...");
         SendMail outboundMail = new SendMail("alert@aprs-alert.net", "jgorkos@gmail.com", "Wedjat Startup",
             "Wedjat has just initialized.  Just thought you'd like to know.");
         outboundMail.send();
+	System.out.println("Startup mail sent");
         log.info("Mail sent, beginning normal operation");
 
     }
