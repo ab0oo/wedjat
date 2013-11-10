@@ -67,6 +67,7 @@ public class JdbcZoneDAO extends BaseJdbcDAO implements ZoneDAO {
 				zone.setZoneId(rs.getLong("zone_id"));
 				zone.setDescription(rs.getString("description"));
 				zone.setPointRadius(rs.getLong("point_radius"));
+				zone.setCategory(rs.getString("category"));
 			}
 		} catch (SQLException sqlex) {
 			System.err.println("SQL Exception:  " + sqlex);
@@ -104,7 +105,8 @@ public class JdbcZoneDAO extends BaseJdbcDAO implements ZoneDAO {
 				zone.setUserId(rs.getLong("user_id"));
 				zone.setZoneId(rs.getLong("zone_id"));
 				zone.setDescription(rs.getString("desription"));
-				zone.setPointRadius(rs.getLong("point_radius")); 
+				zone.setPointRadius(rs.getLong("point_radius"));
+                zone.setCategory(rs.getString("category"));
 				zones.add(zone);
 			}
 		} catch (SQLException sqlex) {

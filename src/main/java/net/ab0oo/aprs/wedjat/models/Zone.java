@@ -38,6 +38,7 @@ public class Zone implements Serializable {
 	private Long pointRadius;
 	private Geometry point, polygon;
 	private String description;
+	private String category;
 	
 	/**
 	 * @return the zoneId
@@ -120,4 +121,16 @@ public class Zone implements Serializable {
 	public final void setDescription(String description) {
 		this.description = description;
 	}
+    /**
+     * @return the category
+     */
+    public String getCategory() {
+        return category;
+    }
+    /**
+     * @param category the category to set
+     */
+    public void setCategory(String category) {
+        this.category = category;
+    }
 }

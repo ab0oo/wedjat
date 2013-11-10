@@ -105,8 +105,9 @@ public class NotificationThread implements Runnable {
         PositionPacket positionPacket = info.getPosition();
         Position position = positionPacket.getPosition();
         MonitoredStation ms = wedjatService.getMonitoredStationByStationId(rule.getStationId());
-        String sourceCall = ms.getNickname();
-        String alertString = sourceCall + " is moving";
+        String sourceNickname = ms.getNickname();
+        String actualCall = ms.getCallsign();
+        String alertString = sourceNickname + " is moving";
         User user = wedjatService.getUser(rule.getUserId());
         TimeZone notificationTimeZone = user.getTimezone();
         String mSystem = user.getMeasurementSystem();
@@ -116,10 +117,10 @@ public class NotificationThread implements Runnable {
         }
         if (rule.getRuleType() == RuleType.INCURSION) {
             Zone alertZone = wedjatService.getZone(rule.getZoneId());
-            alertString = sourceCall + " has entered zone " + alertZone.getDescription();
+            alertString = sourceNickname + " has entered zone " + alertZone.getDescription();
         } else if (rule.getRuleType() == RuleType.EXCURSION) {
             Zone alertZone = wedjatService.getZone(rule.getZoneId());
-            alertString = sourceCall + " has exited zone " + alertZone.getDescription();
+            alertString = sourceNickname + " has exited zone " + alertZone.getDescription();
         } else if (rule.getRuleType() == RuleType.MOVEMENT) {
             List<ReferencePoint> referencePoints = wedjatService.listClosestCities(position);
             ReferencePoint rp1 = referencePoints.get(0);
@@ -149,7 +150,7 @@ public class NotificationThread implements Runnable {
                 if (!nAddress.isShortForm()) {
                     subject = alertString;
                     alertString += "\n\n";
-                    alertString += "Position for " + sourceCall + " reported at " + position.toString() + "\n";
+                    alertString += "Position for " + sourceNickname + " reported at " + position.toString() + "\n";
                     if (positionPacket.getExtension() instanceof CourseAndSpeedExtension) {
                         CourseAndSpeedExtension cas = (CourseAndSpeedExtension) positionPacket.getExtension();
                         alertString += "movement vector is " + cas.getCourse() + " degrees at ";
@@ -162,14 +163,14 @@ public class NotificationThread implements Runnable {
                     alertString += "Static map of location here:  ";
                     URI alertUrl = URI
                         .create("https://maps.googleapis.com/maps/api/staticmap?&zoom=14&size=600x600&markers=color:blue%7Clabel:"
-                                + sourceCall
+                                + sourceNickname
                                 + "%7C"
                                 + position.getLatitude()
                                 + ","
                                 + position.getLongitude()
                                 + "&sensor=false");
                     alertString += alertUrl.toString();
-                    alertString += "\n\nTrack this station on <a href=\"http://aprs.fi/" + sourceCall
+                    alertString += "\n\nTrack this station on <a href=\"http://aprs.fi/" + actualCall
                             + "\">APRS.fi</a>";
                 }
                 String toAddress = nAddress.getEmailAddress();
